@@ -1,7 +1,11 @@
 import './scss/main.scss'
-console.log('hi');
+import {Excel} from '@/components/Excel/Excel';
+import {Header} from '@/components/Header/Header';
+import {Toolbar} from '@/components/Toolbar/Toolbar';
+import {Formula} from '@/components/Formula/Formula';
+import {Tabl} from '@/components/Table/Tabl';
 
-async function start() {
-  return Promise.resolve('work?')
-}
-start().then(console.log)
+const excel = new Excel('#app', {
+  components: [Header, Toolbar, Formula, Tabl]
+})
+excel.render()
