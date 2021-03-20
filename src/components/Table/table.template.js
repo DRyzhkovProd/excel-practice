@@ -4,24 +4,30 @@ const CODES ={
   Z: 90
 }
 // eslint-disable-next-line no-unused-vars
-function toCell() {
+function toCell(_, col) {
   return `
-      <div class="cell" contenteditable="true"></div>`
+      <div class="cell" contenteditable="true" data-col="${col}"></div>`
 }
 // eslint-disable-next-line no-unused-vars
-function toColumn(el) {
+function toColumn(el, index) {
   return `
-      <div class="column">
+      <div class="column" data-type = "resizable"  data-col="${index}">
             ${el}
+            <div class="col-resize" data-resize="col">
+            </div>     
       </div>
       
   `
 }
 // eslint-disable-next-line no-unused-vars
 function createRow(index, content) {
+  const resize = index ? `<div class="row-resize" data-resize="row"></div>` : ''
   return `
-     <div class="row">
-        <div class="row-info">${index ? index : ''}</div>
+     <div class="row" data-type = "resizable">
+        <div class="row-info">
+            ${index ? index : ''}
+            ${resize}
+        </div>
         <div class="row-data">${content}</div>
      </div>
     `
@@ -31,7 +37,6 @@ function toChar(_, index) {
   return String.fromCharCode(CODES.A + index)
 }
 export function createTable(rowsCount =15) {
-  // eslint-disable-next-line no-unused-vars
   const colsCount = CODES.Z - CODES.A + 1
   // массив строк таблицы
   const rows = []
