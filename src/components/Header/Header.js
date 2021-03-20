@@ -20,6 +20,5 @@ export class Header extends ExcelComponent {
             </div>`
   }
   onInput(event) {
-    console.log(event)
   }
 }
