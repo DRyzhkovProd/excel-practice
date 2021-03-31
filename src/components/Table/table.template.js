@@ -4,9 +4,23 @@ const CODES ={
   Z: 90
 }
 // eslint-disable-next-line no-unused-vars
-function toCell(_, col) {
-  return `
-      <div class="cell" contenteditable="true" data-col="${col}"></div>`
+// function toCell(_, col) {
+//   return `
+//       <div class="cell" contenteditable="true" data-col="${col}"></div>`
+// }
+
+function toCell(row) {
+  return function(_, col) {
+    return `
+       <div 
+       class="cell" 
+       contenteditable
+       data-col="${col}"
+       data-type = "cell"
+       data-id="${row}:${col}"
+       >
+       </div>`
+  }
 }
 // eslint-disable-next-line no-unused-vars
 function toColumn(el, index) {
@@ -50,12 +64,12 @@ export function createTable(rowsCount =15) {
       .join('')
   // формируем в массиве rows через фу-цию createRow колонки[A-Z]
   rows.push(createRow('', cols))
-  for (let i = 0; i < rowsCount; i++) {
+  for (let row = 0; row < rowsCount; row++) {
     const cells = new Array(colsCount) // [], length =25
         .fill('')
-        .map(toCell) // создаем ячейки
+        .map(toCell(row))
         .join('')
-    rows.push(createRow(i + 1, cells))
+    rows.push(createRow(row + 1, cells))
   }
   return rows.join('')
 }
