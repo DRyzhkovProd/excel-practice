@@ -79,7 +79,6 @@ class Dom {
   removeClass(className) {
     this.$el.classList.remove(className)
     return this
-
   }
   id(parse) {
     if (parse) {
