@@ -14,14 +14,12 @@ export class DomListener {
     // получаем все слушатели из класса компонента
     this.listeners.forEach(listener => {
       const method = getMethodName(listener)
-      console.log(method);
       if (!this[method]) {
         throw new Error(`Method ${method} is not found in 
         ${this.name || ''} Component`)
       }
       // корневой элемент для каждого компонента
       this[method] = this[method].bind(this)
-      console.log(this.$root)
       this.$root.on(listener, this[method])
     })
   }
