@@ -12,14 +12,12 @@ export class Emitter {
     this.listeners[event].forEach(listener =>{
       listener(...args)
     })
-    console.log(this.listeners);
     return true
   }
   // Подписываемся на уведомления от  emitera
   subscribe(event, fn) {
     this.listeners[event] = this.listeners[event] || []
     this.listeners[event].push(fn)
-    console.log(this.listeners[event])
     // удалляем подписку
     return () => {
       return this.listeners[event] =
