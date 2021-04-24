@@ -2,10 +2,11 @@
 import {$} from 'core/dom';
 import {Emitter} from '../../core/Emmiter';
 import {StoreSubscriber} from '../../core/StoreSubscriber';
+import {updDate} from '../../redux/actions';
+import {preventDefault} from '../../core/utils';
 
 export class Excel {
-  constructor(selector, options) {
-    this.$el = $(selector)// корневой сеоектор (#app)
+  constructor(options) {
     this.components = options.components || [] // компоненты или пусой массив
     this.emitter = new Emitter()
     this.store = options.store
@@ -28,13 +29,17 @@ export class Excel {
     return $root
   }
   //  вывод шаблона компонентов
-  render() {
-    this.$el.append(this.getRoot())
+  init() {
+    if (process.env.NODE_ENV === 'production') {
+      document.addEventListener('contextmenu', preventDefault)
+    }
+    this.store.dispatch(updDate())
     this.subscriber.subscribeComponents(this.components)
     this.components.forEach(component => component.init())
   }
   destroy() {
     this.subscriber.unsubscribeFromStore()
     this.components.forEach(component => component.destroy())
+    document.removeEventListener('contextmenu', preventDefault)
   }
 }

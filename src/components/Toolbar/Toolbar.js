@@ -8,7 +8,6 @@ import {createToolbar} from './toolbar.template';
 
 export class Toolbar extends ExcelStateComponent {
   static className = 'excel__toolbar'
-
   constructor($root, options) {
     super($root, {
       name: 'Toolbar',
@@ -26,7 +25,7 @@ export class Toolbar extends ExcelStateComponent {
     return createToolbar(this.state)
   }
 
-  toHTML() {
+  toHtml() {
     return this.template
   }
 
