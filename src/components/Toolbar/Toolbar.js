@@ -2,7 +2,7 @@
 
 import {defaultStyles} from '../../constants';
 import {ExcelStateComponent} from '../../core/ExcelStateComponent';
-import {$} from '../../core/dom';
+import {$} from '../../core/dom/dom';
 import {createToolbar} from './toolbar.template';
 
 
