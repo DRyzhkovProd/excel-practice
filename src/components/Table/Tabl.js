@@ -8,7 +8,7 @@ import {
   shouldResize
 } from '@/components/Table/table.functions';
 import {TableSelection} from '@/components/Table/TableSelection';
-import {$} from 'core/dom';
+import {$} from '../../core/dom/dom';
 import * as actions from '../../redux/actions';
 import {defaultStyles} from '../../constants';
 import {parse} from '../../core/parse';
