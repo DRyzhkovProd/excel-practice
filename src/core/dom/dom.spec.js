@@ -7,6 +7,5 @@ describe('dom:', ()=> {
   test('should be defined', ()=> {
     expect(dom).toBeDefined()
   })
-
 })
 

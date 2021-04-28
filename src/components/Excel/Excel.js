@@ -1,9 +1,10 @@
 // рендерит компоненты
-import {$} from 'core/dom';
+
 import {Emitter} from '../../core/Emmiter';
 import {StoreSubscriber} from '../../core/StoreSubscriber';
 import {updDate} from '../../redux/actions';
 import {preventDefault} from '../../core/utils';
+import {$} from '../../core/dom/dom';
 
 export class Excel {
   constructor(options) {
